@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './Sidebar.module.scss';
 
 const Sidebar = () => {
-  const [first, setfirst] = useState<boolean>(false);
+  const [checkbox, setCheckbox] = useState<boolean>(false);
   return (
     <div className={styles['sidebar-container']}>
       <div className={styles['menu-container']}>
