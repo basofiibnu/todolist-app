@@ -1,9 +1,21 @@
 import React from 'react';
+import Header from '../../molecules/header/Header';
+import Sidebar from '../../molecules/sidebar/Sidebar';
 
 import styles from './styles.module.scss';
 
 const Todolist = () => {
-  return <div>index</div>;
+  return (
+    <div className={styles['container']}>
+      <Header />
+      <div className={styles['content-container']}>
+        <div>
+          <Sidebar />
+        </div>
+        <div>Content</div>
+      </div>
+    </div>
+  );
 };
 
 export default Todolist;

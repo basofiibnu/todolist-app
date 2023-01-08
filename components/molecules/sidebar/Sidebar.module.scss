@@ -1,0 +1,47 @@
+.sidebar-container {
+  .menu-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    column-gap: 15px;
+    cursor: pointer;
+    margin-bottom: 1.3rem;
+
+    .color {
+      .color-content {
+        width: 20px;
+        height: 20px;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 50%;
+      }
+    }
+
+    .name {
+      font-size: 14px;
+      font-family: 'Open Sans', sans-serif;
+      color: var(--light-black);
+      font-weight: 600;
+    }
+  }
+
+  .checklist-container {
+    display: flex;
+    column-gap: 7px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 2.5rem;
+
+    label {
+      font-size: 13px;
+      font-family: 'Open Sans', sans-serif;
+      color: var(--light-chocolate);
+      font-weight: 600;
+    }
+
+    input {
+      border-radius: 5px;
+      border: 2px solid var(--light-chocolate);
+    }
+  }
+}

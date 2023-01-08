@@ -1,0 +1,15 @@
+.container {
+  width: auto;
+  max-width: 1920px;
+  margin: 0 auto;
+  height: auto;
+  padding: 0;
+}
+
+.content-container {
+  margin: 1.75rem 3rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  column-gap: 5rem;
+}

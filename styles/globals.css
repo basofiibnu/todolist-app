@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Qwitcher+Grypen&display=swap');
-
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -45,6 +43,15 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --light-black: #69665c;
+  --light-yellow: #fff9de;
+  --light-blue: #d1e5f7;
+  --light-red: #ffcece;
+  --light-chocolate: #b2afa1;
+  --white: #ffffff;
+  --light-green: #daf2d6;
+  --light-purple: #d2ceff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,6 +104,7 @@ body {
 
 body {
   color: #000000;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {

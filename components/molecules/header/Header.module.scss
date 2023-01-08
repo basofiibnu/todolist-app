@@ -1,0 +1,22 @@
+.container {
+  margin: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-container {
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--light-black);
+      margin: 0;
+      padding: 0;
+    }
+
+    .iconplus {
+      font-size: 28px;
+    }
+  }
+}
