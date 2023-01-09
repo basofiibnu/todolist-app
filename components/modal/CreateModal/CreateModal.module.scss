@@ -1,0 +1,116 @@
+.container {
+  width: max-content;
+  max-width: 768px;
+  border-radius: 12px;
+  border: 1px solid var(--light-yellow);
+  background: var(--white);
+  padding: 2.5rem 3.5rem;
+
+  .action-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+
+    .cancel-container {
+      p {
+        color: var(--light-black);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+
+    .button-container {
+      button {
+        color: var(--white);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: var(--light-black);
+        width: 120px;
+        height: 40px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .form-container {
+    label {
+      display: block;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--light-black);
+      margin-bottom: 10px;
+    }
+
+    input {
+      background-color: #f0f0ff;
+      min-width: 650px;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      padding: 10px 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      background-color: #f0f0ff;
+      min-width: 650px;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      padding: 10px 15px;
+      border-radius: 10px;
+    }
+  }
+
+  .tags-container {
+    margin-top: 15px;
+
+    .tags-title {
+      display: block;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--light-black);
+      margin-bottom: 15px;
+    }
+    .tags-list {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 20p;
+
+      .tags-option {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        column-gap: 10px;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 10px;
+
+        &.selected {
+          background-color: #f0f0f0;
+        }
+
+        .tags-color {
+          background-color: var(--light-purple);
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        .tags-name {
+          font-family: 'Open sans', sans-serif;
+          color: var(--light-black);
+          margin: 0;
+          font-size: 13px;
+          font-weight: 500;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}

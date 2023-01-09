@@ -1,10 +1,13 @@
 import '../styles/globals.css';
+import '../styles/Modal.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
 import '@fontsource/roboto';
 import '@fontsource/poppins';
 import '@fontsource/open-sans';
+
+import 'bootstrap/dist/css/bootstrap.css';
 
 import type { AppProps } from 'next/app';
 // Tell Font Awesome to skip adding the CSS automatically

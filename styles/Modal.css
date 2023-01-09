@@ -1,0 +1,11 @@
+.modal-dialog {
+  border: none;
+  outline: none;
+  background: transparent !important;
+}
+.modal-content {
+  border: none !important;
+  background: transparent !important;
+  justify-content: center;
+  align-items: center;
+}

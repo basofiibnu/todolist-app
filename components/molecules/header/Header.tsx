@@ -4,7 +4,11 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Header.module.scss';
 
-const Header = () => {
+type THeader = {
+  toggleModal: () => void;
+};
+
+const Header = ({ toggleModal }: THeader) => {
   return (
     <div className={styles['container']}>
       <div className={styles['logo-container']}>
@@ -14,6 +18,7 @@ const Header = () => {
         <FontAwesomeIcon
           icon={faPlus}
           style={{ fontSize: 21, color: ' var(--light-black)' }}
+          onClick={toggleModal}
         />
       </div>
     </div>
