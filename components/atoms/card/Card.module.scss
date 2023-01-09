@@ -1,0 +1,105 @@
+.card-container {
+  display: inline-block;
+  margin-bottom: 16px;
+  position: relative;
+  background-color: var(--light-yellow);
+  padding: 1.2rem 1.7rem;
+  border-radius: 10px;
+
+  .card-title__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+
+    .title {
+      font-family: 'Poppins', sans-serif;
+      color: var(--light-black);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .options {
+      cursor: pointer;
+    }
+  }
+
+  .content-container {
+    margin-bottom: 1rem;
+    p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--light-black);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin: 0;
+    }
+  }
+
+  .tag-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .tag-list {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 5px;
+
+      div {
+        width: 20px;
+        height: 20px;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+
+    .check-card {
+      display: flex;
+      column-gap: 7px;
+      justify-content: flex-start;
+      align-items: center;
+
+      label {
+        font-size: 14px;
+        font-family: 'Open Sans', sans-serif;
+        color: var(--light-chocolate);
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      input {
+        border-radius: 5px;
+        border: 2px solid var(--light-chocolate);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .options-container {
+    background: var(--white);
+    width: 120px;
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--light-yellow);
+    padding: 10px 15px;
+
+    .options-item {
+      font-size: 0.8rem;
+      font-family: 'Open Sans', sans-serif;
+      color: var(--light-chocolate);
+      font-weight: 600;
+      margin-bottom: 10px;
+      cursor: pointer;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
