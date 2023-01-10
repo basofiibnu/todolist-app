@@ -17,6 +17,7 @@
       color: var(--light-black);
       font-size: 1.2rem;
       font-weight: 600;
+      margin-bottom: 0;
     }
 
     .options {
@@ -54,6 +55,11 @@
         border-width: 1px;
         border-radius: 50%;
         cursor: pointer;
+        transition: 0.5s all ease;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
 

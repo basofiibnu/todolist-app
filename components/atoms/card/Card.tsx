@@ -5,14 +5,41 @@ import styles from './Card.module.scss';
 
 type TCard = {
   content: string;
+  title: string;
+  isCompleted: boolean;
+  id: string;
+  labels: string[];
 };
 
-const Card = ({ content }: TCard) => {
+const Card = ({ content, id, labels, isCompleted, title }: TCard) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
+
+  const labelColor = (name: string) => {
+    switch (name) {
+      case 'routine':
+        return 'orange';
+      case 'daily':
+        return 'magenta';
+      case 'meeting':
+        return 'lavender';
+      case 'todo':
+        return 'salmon';
+      case 'work':
+        return 'teal';
+      case 'personal':
+        return 'grey';
+      case 'read':
+        return 'green';
+
+      default:
+        return 'black';
+    }
+  };
+
   return (
     <div className={styles['card-container']}>
       <div className={styles['card-title__container']}>
-        <p className={styles['title']}>Title</p>
+        <p className={styles['title']}>{title}</p>
         <div
           className={styles['options']}
           onClick={() => setShowOptions(!showOptions)}
@@ -31,13 +58,28 @@ const Card = ({ content }: TCard) => {
       </div>
       <div className={styles['tag-container']}>
         <div className={styles['tag-list']}>
-          <div />
-          <div />
+          {labels &&
+            labels.length > 0 &&
+            labels.map((label) => (
+              <div
+                key={label}
+                className={styles['label-tag-container']}
+              >
+                <div
+                  style={{
+                    backgroundColor: labelColor(label),
+                    border: `1px solid ${labelColor(label)}`,
+                  }}
+                ></div>
+              </div>
+            ))}
         </div>
-        <div className={styles['check-card']}>
-          <input type="checkbox" id="checkbox" />
-          <label htmlFor="checkbox">Done</label>
-        </div>
+        {!isCompleted && (
+          <div className={styles['check-card']}>
+            <input type="checkbox" id="checkbox" />
+            <label htmlFor="checkbox">Done</label>
+          </div>
+        )}
       </div>
 
       {showOptions && (

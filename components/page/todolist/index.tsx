@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { api } from '../../../constant/api';
-import { TLabels } from '../../../types/general';
+import { TLabels, TTasks } from '../../../types/general';
 import CreateModal from '../../modal/CreateModal/CreateModal';
 import ModalBox from '../../modal/Modal';
 import Header from '../../molecules/header/Header';
@@ -12,6 +12,7 @@ import styles from './styles.module.scss';
 const Todolist = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [labels, setLabels] = useState<TLabels[]>([]);
+  const [tasks, setTasks] = useState<TTasks[]>([]);
 
   useEffect(() => {
     // to get all task label
@@ -21,7 +22,18 @@ const Todolist = () => {
         setLabels(labels);
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e);
+      });
+  }, []);
+
+  useEffect(() => {
+    api
+      .getTasks()
+      .then((tasks) => {
+        setTasks(tasks);
+      })
+      .catch((e) => {
+        console.error(e);
       });
   }, []);
 
@@ -34,7 +46,7 @@ const Todolist = () => {
           <Sidebar labels={labels} />
         </div>
         <div>
-          <Content />
+          <Content tasks={tasks} />
         </div>
       </div>
 

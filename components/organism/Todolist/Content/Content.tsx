@@ -1,18 +1,29 @@
 import React from 'react';
+import { TTasks } from '../../../../types/general';
 import Card from '../../../atoms/card/Card';
 import styles from './Content.module.scss';
 
-const Content = () => {
+type TContent = {
+  tasks: TTasks[];
+};
+
+const Content = ({ tasks }: TContent) => {
   return (
     <div className={styles['container']}>
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
-      <Card content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore at in numquam qui voluptate! Eaque voluptatem iure minima repudiandae dicta esse, minus consequuntur quaerat rem. Pariatur eaque obcaecati nesciunt magni." />
+      {tasks && tasks.length > 0 ? (
+        tasks.map((task) => (
+          <Card
+            key={task.id}
+            id={task.id}
+            title={task.content}
+            content={task.description}
+            labels={task.labels}
+            isCompleted={task.isCompleted}
+          />
+        ))
+      ) : (
+        <p>Showing tasks...</p>
+      )}
     </div>
   );
 };
