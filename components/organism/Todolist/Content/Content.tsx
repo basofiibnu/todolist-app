@@ -43,7 +43,7 @@ const Content = ({
               />
             ))
           ) : (
-            <p>Showing tasks...</p>
+            <p>There is nothing here...</p>
           )}
         </Fragment>
       )}

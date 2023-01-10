@@ -12,4 +12,9 @@
   align-items: flex-start;
   justify-content: flex-start;
   column-gap: 3rem;
+
+  @media screen and (max-width: 425px) {
+    flex-direction: column;
+    margin: 0.5rem 1rem;
+  }
 }

@@ -1,4 +1,9 @@
 .sidebar-container {
+  @media screen and (max-width: 425px) {
+    display: flex;
+    overflow: auto;
+    max-width: 100vw;
+  }
   .menu-container {
     display: flex;
     align-items: flex-start;
@@ -12,6 +17,10 @@
     padding: 10px 15px;
     border-radius: 10px;
     transition: 0.5s all;
+
+    @media screen and (max-width: 425px) {
+      min-width: 120px;
+    }
 
     &:hover {
       background: #f0f0ff;
