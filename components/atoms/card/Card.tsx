@@ -9,9 +9,17 @@ type TCard = {
   isCompleted: boolean;
   id: string;
   labels: string[];
+  isEdit: () => void;
 };
 
-const Card = ({ content, id, labels, isCompleted, title }: TCard) => {
+const Card = ({
+  content,
+  id,
+  labels,
+  isCompleted,
+  title,
+  isEdit,
+}: TCard) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
   const labelColor = (name: string) => {
@@ -76,8 +84,8 @@ const Card = ({ content, id, labels, isCompleted, title }: TCard) => {
         </div>
         {!isCompleted && (
           <div className={styles['check-card']}>
-            <input type="checkbox" id="checkbox" />
-            <label htmlFor="checkbox">Done</label>
+            <input type="checkbox" id={`task-${id}`} />
+            <label htmlFor={`task-${id}`}>Done</label>
           </div>
         )}
       </div>

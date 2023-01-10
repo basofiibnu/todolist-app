@@ -5,9 +5,10 @@ import styles from './Content.module.scss';
 
 type TContent = {
   tasks: TTasks[];
+  setIsEdit: () => void;
 };
 
-const Content = ({ tasks }: TContent) => {
+const Content = ({ tasks, setIsEdit }: TContent) => {
   return (
     <div className={styles['container']}>
       {tasks && tasks.length > 0 ? (
@@ -19,6 +20,7 @@ const Content = ({ tasks }: TContent) => {
             content={task.description}
             labels={task.labels}
             isCompleted={task.isCompleted}
+            isEdit={setIsEdit}
           />
         ))
       ) : (
