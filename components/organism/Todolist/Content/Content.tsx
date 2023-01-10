@@ -5,7 +5,7 @@ import styles from './Content.module.scss';
 
 type TContent = {
   tasks: TTasks[];
-  setIsEdit: () => void;
+  setIsEdit: (id: string) => Promise<void>;
 };
 
 const Content = ({ tasks, setIsEdit }: TContent) => {

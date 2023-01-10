@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { api } from '../../../constant/api';
 import { TLabels, TTasks } from '../../../types/general';
 import CreateModal from '../../modal/CreateModal/CreateModal';
+import EditModal from '../../modal/EditModal/EditModal';
 import Header from '../../molecules/header/Header';
 import Sidebar from '../../molecules/sidebar/Sidebar';
 import Content from '../../organism/Todolist/Content/Content';
@@ -13,6 +14,22 @@ const Todolist = () => {
   const [labels, setLabels] = useState<TLabels[]>([]);
   const [tasks, setTasks] = useState<TTasks[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [taskData, setTaskData] = useState<TTasks>();
+  const [taskId, settaskId] = useState<string>('');
+
+  const isEditTask = async (id: string) => {
+    settaskId(id);
+  };
+
+  const getDetailTaskData = async () => {
+    await api
+      .getTask(taskId)
+      .then((data) => {
+        setTaskData(data);
+        setIsEdit(!isEdit);
+      })
+      .catch((error) => console.error(error));
+  };
 
   useEffect(() => {
     // to get all task label
@@ -27,6 +44,7 @@ const Todolist = () => {
   }, []);
 
   useEffect(() => {
+    // to get all active task
     api
       .getTasks()
       .then((tasks) => {
@@ -37,6 +55,10 @@ const Todolist = () => {
       });
   }, [showModal]);
 
+  useEffect(() => {
+    getDetailTaskData();
+  }, [taskId]);
+
   return (
     <div className={styles['container']}>
       <Header toggleModal={() => setShowModal(!showModal)} />
@@ -45,10 +67,7 @@ const Todolist = () => {
           <Sidebar labels={labels} />
         </div>
         <div>
-          <Content
-            tasks={tasks}
-            setIsEdit={() => setIsEdit(!isEdit)}
-          />
+          <Content tasks={tasks} setIsEdit={isEditTask} />
         </div>
       </div>
 
@@ -57,6 +76,15 @@ const Todolist = () => {
           show={showModal}
           toggle={() => setShowModal(!showModal)}
           labels={labels}
+        />
+      )}
+
+      {isEdit && taskData && (
+        <EditModal
+          labels={labels}
+          show={isEdit}
+          toggle={() => setIsEdit(!isEdit)}
+          data={taskData}
         />
       )}
     </div>

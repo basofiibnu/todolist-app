@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import { Modal } from 'reactstrap';
 import { api } from '../../../constant/api';
-import { TLabels } from '../../../types/general';
+import { TLabels, TTasks } from '../../../types/general';
 
-import styles from './CreateModal.module.scss';
+import styles from './EditModal.module.scss';
 
-type TCreateModal = {
+type TEditModal = {
   show: boolean;
   toggle: () => void;
   labels: TLabels[];
+  data: TTasks;
 };
 
-const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [labelList, setLabelList] = useState<string[]>([]);
+const EditModal = ({ show, toggle, labels, data }: TEditModal) => {
+  const [title, setTitle] = useState<string>(data.content);
+  const [description, setDescription] = useState<string>(
+    data.description
+  );
+  const [labelList, setLabelList] = useState<string[]>(data.labels);
 
   const onClickLabel = (labelName: string) => {
-    if (labelList.indexOf(labelName) === -1) {
+    if (labelList && labelList.indexOf(labelName) === -1) {
       const arrayLabel = [...labelList, labelName];
       setLabelList(arrayLabel);
     } else {
-      const data = labelList.filter(
-        (label: string) => label !== labelName
-      );
+      const data =
+        labelList &&
+        labelList.filter((label: string) => label !== labelName);
       setLabelList(data);
     }
   };
@@ -63,7 +66,7 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
             </div>
             <div className={styles['button-container']}>
               <button type="submit" className={styles['add-button']}>
-                Add
+                Edit
               </button>
             </div>
           </div>
@@ -75,6 +78,7 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
                 placeholder="add a title..."
                 onChange={(e) => setTitle(e.target.value)}
                 required
+                value={title}
               />
             </div>
             <div>
@@ -84,6 +88,7 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
                 rows={5}
                 onChange={(e) => setDescription(e.target.value)}
                 required
+                value={description}
               />
             </div>
           </div>
@@ -122,4 +127,4 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
   );
 };
 
-export default CreateModal;
+export default EditModal;

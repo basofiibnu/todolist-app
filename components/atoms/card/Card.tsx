@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import styles from './Card.module.scss';
+import EditModal from '../../modal/EditModal/EditModal';
 
 type TCard = {
   content: string;
@@ -9,7 +10,7 @@ type TCard = {
   isCompleted: boolean;
   id: string;
   labels: string[];
-  isEdit: () => void;
+  isEdit: (id: string) => Promise<void>;
 };
 
 const Card = ({
@@ -92,7 +93,15 @@ const Card = ({
 
       {showOptions && (
         <div className={styles['options-container']}>
-          <div className={styles['options-item']}>Edit</div>
+          <div
+            className={styles['options-item']}
+            onClick={() => {
+              setShowOptions(!showOptions);
+              isEdit(id);
+            }}
+          >
+            Edit
+          </div>
           <div className={styles['options-item']}>Delete</div>
         </div>
       )}
