@@ -18,6 +18,8 @@ const Todolist = () => {
   const [isDelete, setIsDelete] = useState<boolean>(false);
   const [taskData, setTaskData] = useState<TTasks>();
   const [taskId, setTaskId] = useState<string>('');
+  const [labelName, setLabelName] = useState<string>('');
+  const [loadingTask, setLoadingTask] = useState<boolean>(false);
 
   const isEditTask = async (id: string) => {
     setTaskId(id);
@@ -56,15 +58,18 @@ const Todolist = () => {
 
   useEffect(() => {
     // to get all active task
+    setLoadingTask(true);
     api
-      .getTasks()
+      .getTasks({ label: labelName })
       .then((tasks) => {
         setTasks(tasks);
+        setLoadingTask(false);
       })
       .catch((e) => {
         console.error(e);
+        setLoadingTask(false);
       });
-  }, [showModal, isEdit, isDelete]);
+  }, [showModal, isEdit, isDelete, labelName]);
 
   useEffect(() => {
     if (!isDelete) {
@@ -79,10 +84,11 @@ const Todolist = () => {
       <Header toggleModal={() => setShowModal(!showModal)} />
       <div className={styles['content-container']}>
         <div>
-          <Sidebar labels={labels} />
+          <Sidebar labels={labels} setLabel={setLabelName} />
         </div>
         <div>
           <Content
+            loading={loadingTask}
             tasks={tasks}
             isEdit={isEdit}
             setIsDelete={isDeleteTask}

@@ -5,10 +5,11 @@ import styles from './Sidebar.module.scss';
 
 type TSidebar = {
   labels: TLabels[];
+  setLabel: (name: string) => void;
 };
 
-const Sidebar = ({ labels }: TSidebar) => {
-  const [selectedLabel, setSelectedLabel] = useState<number>(1);
+const Sidebar = ({ labels, setLabel }: TSidebar) => {
+  const [selectedLabel, setSelectedLabel] = useState<number>();
   return (
     <div className={styles['sidebar-container']}>
       {labels && labels.length > 0 ? (
@@ -20,6 +21,7 @@ const Sidebar = ({ labels }: TSidebar) => {
             key={label.id}
             onClick={() => {
               setSelectedLabel(i + 1);
+              setLabel(label.name);
             }}
           >
             <div
