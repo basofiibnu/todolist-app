@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { api } from '../../../constant/api';
 import { TLabels, TTasks } from '../../../types/general';
 import CreateModal from '../../modal/CreateModal/CreateModal';
+import DeleteModal from '../../modal/DeleteModal/DeleteModal';
 import EditModal from '../../modal/EditModal/EditModal';
 import Header from '../../molecules/header/Header';
 import Sidebar from '../../molecules/sidebar/Sidebar';
@@ -14,11 +15,17 @@ const Todolist = () => {
   const [labels, setLabels] = useState<TLabels[]>([]);
   const [tasks, setTasks] = useState<TTasks[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [isDelete, setIsDelete] = useState<boolean>(false);
   const [taskData, setTaskData] = useState<TTasks>();
   const [taskId, setTaskId] = useState<string>('');
 
-  const isEditTask = async (id: string, edit: boolean) => {
+  const isEditTask = async (id: string) => {
     setTaskId(id);
+  };
+
+  const isDeleteTask = async (id: string) => {
+    setTaskId(id);
+    setIsDelete(true);
   };
 
   const getDetailTaskData = async () => {
@@ -57,11 +64,15 @@ const Todolist = () => {
       .catch((e) => {
         console.error(e);
       });
-  }, [showModal, isEdit]);
+  }, [showModal, isEdit, isDelete]);
 
   useEffect(() => {
-    getDetailTaskData();
+    if (!isDelete) {
+      getDetailTaskData();
+    }
   }, [taskId]);
+
+  console.log(taskId);
 
   return (
     <div className={styles['container']}>
@@ -74,6 +85,7 @@ const Todolist = () => {
           <Content
             tasks={tasks}
             isEdit={isEdit}
+            setIsDelete={isDeleteTask}
             setIsEdit={isEditTask}
           />
         </div>
@@ -93,6 +105,14 @@ const Todolist = () => {
           show={isEdit}
           toggle={() => setIsEdit(!isEdit)}
           data={taskData}
+        />
+      )}
+
+      {isDelete && (
+        <DeleteModal
+          toggle={() => setIsDelete(!isDelete)}
+          show={isDelete}
+          id={taskId}
         />
       )}
     </div>

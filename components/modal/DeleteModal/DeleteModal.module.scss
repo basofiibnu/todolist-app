@@ -1,0 +1,49 @@
+.container {
+  width: max-content;
+  max-width: 768px;
+  border-radius: 12px;
+  border: 1px solid var(--light-yellow);
+  background: var(--white);
+  padding: 2.5rem 3.5rem;
+
+  .action-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+
+    .cancel-container {
+      p {
+        color: var(--light-black);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+
+    .button-container {
+      button {
+        color: var(--white);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: red;
+        width: 120px;
+        height: 40px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .form-container {
+    label {
+      display: block;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--light-black);
+      margin-bottom: 10px;
+    }
+  }
+}

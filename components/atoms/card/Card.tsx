@@ -12,6 +12,7 @@ type TCard = {
   labels: string[];
   isEdit: boolean;
   setIsEdit: (id: string, edit: boolean) => Promise<void>;
+  setIsDelete: (id: string) => Promise<void>;
 };
 
 const Card = ({
@@ -22,6 +23,7 @@ const Card = ({
   title,
   isEdit,
   setIsEdit,
+  setIsDelete,
 }: TCard) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
@@ -104,7 +106,15 @@ const Card = ({
           >
             Edit
           </div>
-          <div className={styles['options-item']}>Delete</div>
+          <div
+            className={styles['options-item']}
+            onClick={() => {
+              setShowOptions(!showOptions);
+              setIsDelete(id);
+            }}
+          >
+            Delete
+          </div>
         </div>
       )}
     </div>

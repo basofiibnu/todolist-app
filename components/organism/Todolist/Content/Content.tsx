@@ -7,9 +7,15 @@ type TContent = {
   tasks: TTasks[];
   isEdit: boolean;
   setIsEdit: (id: string, edit: boolean) => Promise<void>;
+  setIsDelete: (id: string) => Promise<void>;
 };
 
-const Content = ({ tasks, setIsEdit, isEdit }: TContent) => {
+const Content = ({
+  tasks,
+  setIsEdit,
+  setIsDelete,
+  isEdit,
+}: TContent) => {
   return (
     <div className={styles['container']}>
       {tasks && tasks.length > 0 ? (
@@ -23,6 +29,7 @@ const Content = ({ tasks, setIsEdit, isEdit }: TContent) => {
             isCompleted={task.isCompleted}
             isEdit={isEdit}
             setIsEdit={setIsEdit}
+            setIsDelete={setIsDelete}
           />
         ))
       ) : (
