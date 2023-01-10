@@ -17,7 +17,11 @@ const Header = ({ toggleModal }: THeader) => {
       <div>
         <FontAwesomeIcon
           icon={faPlus}
-          style={{ fontSize: 21, color: ' var(--light-black)' }}
+          style={{
+            fontSize: 21,
+            color: ' var(--light-black)',
+            cursor: 'pointer',
+          }}
           onClick={toggleModal}
         />
       </div>

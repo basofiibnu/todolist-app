@@ -5,7 +5,21 @@
     justify-content: flex-start;
     column-gap: 15px;
     cursor: pointer;
-    margin-bottom: 1.3rem;
+    margin-bottom: 0.5rem;
+
+    width: auto;
+    min-width: 170px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: 0.5s all;
+
+    &:hover {
+      background: #f0f0ff;
+    }
+
+    &.selected {
+      background: #f0f0ff;
+    }
 
     .color {
       .color-content {

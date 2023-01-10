@@ -1,38 +1,43 @@
 import React, { useState } from 'react';
+import { TLabels } from '../../../types/general';
 
 import styles from './Sidebar.module.scss';
 
-const Sidebar = () => {
-  const [checkbox, setCheckbox] = useState<boolean>(false);
+type TSidebar = {
+  labels: TLabels[];
+};
+
+const Sidebar = ({ labels }: TSidebar) => {
+  const [selectedLabel, setSelectedLabel] = useState<number>(1);
   return (
     <div className={styles['sidebar-container']}>
-      <div className={styles['menu-container']}>
-        <div className={styles['color']}>
-          <div className={styles['color-content']} />
-        </div>
-        <div className={styles['name']}>Sidebar Content</div>
-      </div>
-
-      <div className={styles['menu-container']}>
-        <div className={styles['color']}>
-          <div className={styles['color-content']} />
-        </div>
-        <div className={styles['name']}>Sidebar Content</div>
-      </div>
-
-      <div className={styles['menu-container']}>
-        <div className={styles['color']}>
-          <div className={styles['color-content']} />
-        </div>
-        <div className={styles['name']}>Sidebar Content</div>
-      </div>
-
-      <div className={styles['menu-container']}>
-        <div className={styles['color']}>
-          <div className={styles['color-content']} />
-        </div>
-        <div className={styles['name']}>Sidebar Content</div>
-      </div>
+      {labels && labels.length > 0 ? (
+        labels.map((label, i) => (
+          <div
+            className={`${styles['menu-container']} ${
+              i + 1 === selectedLabel && styles['selected']
+            }`}
+            key={label.id}
+            onClick={() => {
+              setSelectedLabel(i + 1);
+            }}
+          >
+            <div
+              className={styles['color']}
+              style={{
+                backgroundColor: label.color,
+                border: `1px solid ${label.color}`,
+                borderRadius: '50%',
+              }}
+            >
+              <div className={styles['color-content']} />
+            </div>
+            <div className={styles['name']}>{label.name}</div>
+          </div>
+        ))
+      ) : (
+        <p>Showing labels...</p>
+      )}
 
       <div className={styles['checklist-container']}>
         <input type="checkbox" name="" id="done-task" />
