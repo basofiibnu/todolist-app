@@ -10,7 +10,8 @@ type TCard = {
   isCompleted: boolean;
   id: string;
   labels: string[];
-  isEdit: (id: string) => Promise<void>;
+  isEdit: boolean;
+  setIsEdit: (id: string, edit: boolean) => Promise<void>;
 };
 
 const Card = ({
@@ -20,6 +21,7 @@ const Card = ({
   isCompleted,
   title,
   isEdit,
+  setIsEdit,
 }: TCard) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
 
@@ -97,7 +99,7 @@ const Card = ({
             className={styles['options-item']}
             onClick={() => {
               setShowOptions(!showOptions);
-              isEdit(id);
+              setIsEdit(id, isEdit);
             }}
           >
             Edit

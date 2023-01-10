@@ -15,6 +15,7 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [labelList, setLabelList] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const onClickLabel = (labelName: string) => {
     if (labelList.indexOf(labelName) === -1) {
@@ -30,7 +31,7 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
 
   const onCreateTask = async (e: any) => {
     e.preventDefault();
-
+    setIsSubmitting(true);
     const taskData = {
       content: title,
       description: description,
@@ -40,7 +41,9 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
     await api
       .addTask(taskData)
       .then((data) => {
-        console.log(data);
+        setIsSubmitting(false);
+      })
+      .then(() => {
         toggle();
       })
       .catch((e) => console.error(e));
@@ -63,7 +66,7 @@ const CreateModal = ({ show, toggle, labels }: TCreateModal) => {
             </div>
             <div className={styles['button-container']}>
               <button type="submit" className={styles['add-button']}>
-                Add
+                {isSubmitting ? 'Submitting...' : 'Add'}
               </button>
             </div>
           </div>

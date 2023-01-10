@@ -18,6 +18,7 @@ const EditModal = ({ show, toggle, labels, data }: TEditModal) => {
     data.description
   );
   const [labelList, setLabelList] = useState<string[]>(data.labels);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const onClickLabel = (labelName: string) => {
     if (labelList && labelList.indexOf(labelName) === -1) {
@@ -31,9 +32,9 @@ const EditModal = ({ show, toggle, labels, data }: TEditModal) => {
     }
   };
 
-  const onCreateTask = async (e: any) => {
+  const onEditTask = async (e: any) => {
     e.preventDefault();
-
+    setIsSubmitting(true);
     const taskData = {
       content: title,
       description: description,
@@ -41,9 +42,11 @@ const EditModal = ({ show, toggle, labels, data }: TEditModal) => {
     };
 
     await api
-      .addTask(taskData)
+      .updateTask(data.id, taskData)
       .then((data) => {
-        console.log(data);
+        setIsSubmitting(false);
+      })
+      .then(() => {
         toggle();
       })
       .catch((e) => console.error(e));
@@ -55,7 +58,7 @@ const EditModal = ({ show, toggle, labels, data }: TEditModal) => {
       toggle={toggle}
       style={{ border: 'none', outline: 'none', borderRadius: 30 }}
     >
-      <form onSubmit={onCreateTask}>
+      <form onSubmit={onEditTask}>
         <div className={styles['container']}>
           <div className={styles['action-container']}>
             <div
@@ -66,7 +69,7 @@ const EditModal = ({ show, toggle, labels, data }: TEditModal) => {
             </div>
             <div className={styles['button-container']}>
               <button type="submit" className={styles['add-button']}>
-                Edit
+                {isSubmitting ? 'Submitting...' : 'Edit'}
               </button>
             </div>
           </div>

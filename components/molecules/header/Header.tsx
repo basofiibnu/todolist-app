@@ -12,7 +12,7 @@ const Header = ({ toggleModal }: THeader) => {
   return (
     <div className={styles['container']}>
       <div className={styles['logo-container']}>
-        <p className={styles['logo']}>Logo</p>
+        <p className={styles['logo']}>Todo</p>
       </div>
       <div>
         <FontAwesomeIcon

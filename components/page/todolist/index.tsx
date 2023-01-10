@@ -15,20 +15,24 @@ const Todolist = () => {
   const [tasks, setTasks] = useState<TTasks[]>([]);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [taskData, setTaskData] = useState<TTasks>();
-  const [taskId, settaskId] = useState<string>('');
+  const [taskId, setTaskId] = useState<string>('');
 
-  const isEditTask = async (id: string) => {
-    settaskId(id);
+  const isEditTask = async (id: string, edit: boolean) => {
+    setTaskId(id);
   };
 
   const getDetailTaskData = async () => {
-    await api
-      .getTask(taskId)
-      .then((data) => {
-        setTaskData(data);
-        setIsEdit(!isEdit);
-      })
-      .catch((error) => console.error(error));
+    if (taskId) {
+      await api
+        .getTask(taskId)
+        .then((data) => {
+          setTaskData(data);
+          if (!isEdit) {
+            setIsEdit(true);
+          }
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   useEffect(() => {
@@ -53,7 +57,7 @@ const Todolist = () => {
       .catch((e) => {
         console.error(e);
       });
-  }, [showModal]);
+  }, [showModal, isEdit]);
 
   useEffect(() => {
     getDetailTaskData();
@@ -67,7 +71,11 @@ const Todolist = () => {
           <Sidebar labels={labels} />
         </div>
         <div>
-          <Content tasks={tasks} setIsEdit={isEditTask} />
+          <Content
+            tasks={tasks}
+            isEdit={isEdit}
+            setIsEdit={isEditTask}
+          />
         </div>
       </div>
 
