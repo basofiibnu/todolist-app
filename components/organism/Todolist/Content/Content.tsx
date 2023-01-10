@@ -8,6 +8,8 @@ type TContent = {
   isEdit: boolean;
   setIsEdit: (id: string, edit: boolean) => Promise<void>;
   setIsDelete: (id: string) => Promise<void>;
+  setCloseTask: (id: string) => Promise<void>;
+
   loading: boolean;
 };
 
@@ -15,6 +17,7 @@ const Content = ({
   tasks,
   setIsEdit,
   setIsDelete,
+  setCloseTask,
   isEdit,
   loading,
 }: TContent) => {
@@ -36,6 +39,7 @@ const Content = ({
                 isEdit={isEdit}
                 setIsEdit={setIsEdit}
                 setIsDelete={setIsDelete}
+                setCloseTask={setCloseTask}
               />
             ))
           ) : (

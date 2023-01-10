@@ -21,6 +21,29 @@ const Todolist = () => {
   const [labelName, setLabelName] = useState<string>('');
   const [loadingTask, setLoadingTask] = useState<boolean>(false);
 
+  const getAllTasks = () => {
+    setLoadingTask(true);
+    api
+      .getTasks({ label: labelName })
+      .then((tasks) => {
+        setTasks(tasks);
+        setLoadingTask(false);
+      })
+      .catch((e) => {
+        console.error(e);
+        setLoadingTask(false);
+      });
+  };
+
+  const completeTask = async (id: string) => {
+    await api
+      .closeTask(id)
+      .then((data) => {
+        getAllTasks();
+      })
+      .catch((error) => console.error(error));
+  };
+
   const isEditTask = async (id: string) => {
     setTaskId(id);
   };
@@ -58,17 +81,7 @@ const Todolist = () => {
 
   useEffect(() => {
     // to get all active task
-    setLoadingTask(true);
-    api
-      .getTasks({ label: labelName })
-      .then((tasks) => {
-        setTasks(tasks);
-        setLoadingTask(false);
-      })
-      .catch((e) => {
-        console.error(e);
-        setLoadingTask(false);
-      });
+    getAllTasks();
   }, [showModal, isEdit, isDelete, labelName]);
 
   useEffect(() => {
@@ -77,7 +90,7 @@ const Todolist = () => {
     }
   }, [taskId]);
 
-  console.log(taskId);
+  console.log(tasks);
 
   return (
     <div className={styles['container']}>
@@ -93,6 +106,7 @@ const Todolist = () => {
             isEdit={isEdit}
             setIsDelete={isDeleteTask}
             setIsEdit={isEditTask}
+            setCloseTask={completeTask}
           />
         </div>
       </div>

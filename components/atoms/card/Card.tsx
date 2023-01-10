@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import styles from './Card.module.scss';
-import EditModal from '../../modal/EditModal/EditModal';
 
 type TCard = {
   content: string;
@@ -13,6 +12,7 @@ type TCard = {
   isEdit: boolean;
   setIsEdit: (id: string, edit: boolean) => Promise<void>;
   setIsDelete: (id: string) => Promise<void>;
+  setCloseTask: (id: string) => Promise<void>;
 };
 
 const Card = ({
@@ -24,8 +24,10 @@ const Card = ({
   isEdit,
   setIsEdit,
   setIsDelete,
+  setCloseTask,
 }: TCard) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(isCompleted);
 
   const labelColor = (name: string) => {
     switch (name) {
@@ -89,8 +91,13 @@ const Card = ({
         </div>
         {!isCompleted && (
           <div className={styles['check-card']}>
-            <input type="checkbox" id={`task-${id}`} />
-            <label htmlFor={`task-${id}`}>Done</label>
+            <input
+              type="checkbox"
+              id={`task-${id}`}
+              checked={isChecked}
+              onChange={() => setCloseTask(id)}
+            />
+            <label htmlFor={`task-${id}`}>Mark as complete</label>
           </div>
         )}
       </div>

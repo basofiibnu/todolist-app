@@ -41,10 +41,10 @@ const Sidebar = ({ labels, setLabel }: TSidebar) => {
         <p>Showing labels...</p>
       )}
 
-      <div className={styles['checklist-container']}>
+      {/* <div className={styles['checklist-container']}>
         <input type="checkbox" name="" id="done-task" />
         <label htmlFor="done-task">Hide Done Tasks</label>
-      </div>
+      </div> */}
     </div>
   );
 };
